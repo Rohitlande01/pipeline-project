@@ -1,0 +1,24 @@
+pipeline
+{
+	agent any
+	stages{
+		stage("SCM"){
+		    steps{
+		        git branch: 'main', url: 'https://github.com/Rohitlande01/html-book-store.git'
+		    }
+		}
+		stage("Deploy"){
+		    steps{
+		        sh '''
+		        rm -f /var/www/html/booky/*
+		        cp -r ./* /var/www/html/booky/
+		        echo "Deployed using pipeline script."
+		        
+		        '''
+		    }
+		}
+		
+	}
+}
+	
+	
